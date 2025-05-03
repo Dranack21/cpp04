@@ -29,6 +29,7 @@ void Animal::makeSound()const
 {
 	std::cout << this->getType() << " is not a Animal" << std::endl;
 }
+
 std::string Animal::getType()const
 {
 	return(this->type);

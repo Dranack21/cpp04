@@ -15,7 +15,7 @@ SRCS    = main.cpp \
 			
 ### OBJS ###########################################################################
 
-OBJDIR  = obj
+OBJDIR  = trash
 SRCDIR  = srcs
 OBJS    = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 

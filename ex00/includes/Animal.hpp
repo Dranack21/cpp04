@@ -8,10 +8,10 @@ class Animal
 		std::string type;
 	public:
 		Animal();
-		~Animal();
+		virtual ~Animal();
 		Animal(const Animal &copy);
 		Animal &operator=(const Animal &other);
-	
+
 		virtual void makeSound()const;
 		std::string getType()const;
 };
