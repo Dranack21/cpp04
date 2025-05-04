@@ -1,0 +1,44 @@
+### COMPIL #####################################################################
+
+CC      = c++
+CFLAGS  = -Wall -Wextra -Werror -std=c++98
+NAME    = a.out
+
+### SRC ########################################################################
+
+SRCS    = main.cpp \
+			srcs/Cat.cpp\
+			srcs/Dog.cpp\
+			srcs/Animal.cpp\
+			srcs/WrongAnimal.cpp\
+			srcs/WrongCat.cpp\
+			srcs/Brain.cpp\
+			
+### OBJS ###########################################################################
+
+OBJDIR  = trash
+SRCDIR  = srcs
+OBJS    = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
+
+### COMMANDS #######################################################################
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
+clean:
+	rm -rf $(OBJDIR)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all re fclean clean
