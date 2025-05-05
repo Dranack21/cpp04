@@ -28,8 +28,8 @@ Cat &Cat::operator=(const Cat &other)
 		if (this->_brain)
 			delete this->_brain;
 		this->_brain = new Brain(*other._brain); // Deep copy
+		std::cout << "Cat assignment operator called" << std::endl;
 	}
-	std::cout << "Cat assignment operator called" << std::endl;
 	return *this;
 }
 

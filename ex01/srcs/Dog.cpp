@@ -15,13 +15,22 @@ Dog::~Dog()
 
 Dog::Dog(const Dog &copy): Animal(copy)
 {
+	this->_brain = new Brain;
+    *(this->_brain) = *(copy._brain);
 	std::cout << "Dog Copy constructor has been called " << std::endl;
 }
 Dog &Dog::operator=(const Dog &other)
 {
-	Animal::operator=(other);
-	std::cout << "Dog assignement operator called" << std::endl;
-	return(*this);
+	if (this != &other)
+	{
+		Animal::operator=(other);
+
+		if (this->_brain)
+			delete this->_brain;
+		this->_brain = new Brain(*other._brain); // Deep copy
+	}
+	std::cout << "Dog assignment operator called" << std::endl;
+	return *this;
 }
 
 void Dog::makeSound()const

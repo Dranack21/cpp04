@@ -24,6 +24,7 @@ AMateria::AMateria(const AMateria &copy)
 
 AMateria &AMateria::operator=(const AMateria &other)
 {
+	
 	this->_type = other._type;
 	return (*this);
 }

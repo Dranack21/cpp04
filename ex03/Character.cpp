@@ -34,7 +34,7 @@ Character &Character::operator=(const Character &other)
 			else
 				this->Inventory[i] = NULL;
 		}
-		for (int i = 0; i < 4; ++i)
+		for (int i = 0; i < 20; ++i)
 		{
 			if (this->BackPack[i])
 			{
@@ -134,6 +134,6 @@ void Character::use(int idx, ICharacter& target)
 		std::cout << "Please enter an index between 0 and 3" << std::endl;
 		return ;
 	}
-	std::cout << this->_nickname << " " <<std::endl;
+	std::cout << this->_nickname << " " ;
 	this->Inventory[idx]->use(target);
 }
