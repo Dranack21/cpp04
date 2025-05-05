@@ -8,7 +8,9 @@ NAME    = a.out
 
 SRCS    = main.cpp \
 			AMateria.cpp\
-			Icharacter.cpp\
+			Character.cpp\
+			Elements.cpp\
+			MateriaSource.cpp\
 			
 ### OBJS ###########################################################################
 
