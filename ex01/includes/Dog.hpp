@@ -8,7 +8,7 @@ class Dog : public Animal
 		Brain *_brain;
 	public:
 		Dog();
-		~Dog();
+		virtual ~Dog();
 		Dog(const Dog &copy);
 		Dog &operator=(const Dog &other);
 		void makeSound()const;

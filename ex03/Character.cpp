@@ -85,16 +85,16 @@ void Character::equip(AMateria *m)
 {
 	int i;
 
+
 	i = 0;
-	for (int i = 0; i < 4; i++)
+	for (int x = 0; x < 4; x++)
 	{
-		if (this->Inventory[i] == m)
+		if (this->Inventory[x] == m)
 		{
 			std::cout << "Can't learn the same pointer twice would lead to double free errors "<< std::endl;
 			return;
 		}
 	}
-	std::cout << "e\n";
 	if (!m)
 	{
 		std::cout << "Can't learn a NULL POINTER probably cannot learn materia "<< std::endl;
@@ -106,10 +106,10 @@ void Character::equip(AMateria *m)
 		{
 			std::cout << this->getName() << " Learned " << m->getType() << " on inventory slot " << i << std::endl;
 			this->Inventory[i] = m;
-			for (int i = 0; i < 20 ; i++)
+			for (int j = 0; j < 20 ; j++)
 			{
-				if (m == this->BackPack[i])
-					this->BackPack[i] = NULL;
+				if (m == this->BackPack[j])
+					this->BackPack[j] = NULL;
 			}
 			break;
 		}
@@ -118,7 +118,23 @@ void Character::equip(AMateria *m)
 	if (i == 4)
 	{
 		std::cout << this->getName() << " cannot learn " << m->getType() << " because he has no inventory slots left " << std::endl;
-		delete m ;
+		i = 0;
+		while (i != 20)
+		{
+				if (this->BackPack[i] == NULL)
+					break;
+				i++;
+		}
+		if (i != 20)
+		{
+			std::cout << "putting it in the backpack in slot " << i<< std::endl;
+			this->BackPack[i] = m;
+		}
+		else
+		{
+			std::cout << "No more space in player inventory or backpack deleting the variable please be careful " << i<< std::endl;
+			delete m;
+		}
 	}
 }
 
