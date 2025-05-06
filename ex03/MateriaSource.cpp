@@ -40,7 +40,7 @@ MateriaSource::~MateriaSource()
 {
 	for (int i = 0; i < 4; i++) 
 	{
-		if (this->_materias[i]) 
+		if (this->_materias[i])
 			delete this->_materias[i];
 	}
 }
@@ -52,7 +52,7 @@ void MateriaSource::learnMateria(AMateria *materia)
 		if (this->_materias[i] == NULL)
 		{
 			this->_materias[i] = materia;
-			std::cout << "Materia source learned " << materia->getType() << "!" << std::endl;
+			std::cout << "Materia source learned " << materia->getType() << " on slot " << i <<" !" << std::endl;
 		  	return;
 		}
 	}
@@ -63,7 +63,8 @@ AMateria *MateriaSource::createMateria(std::string const& type)
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_materias[i] && this->_materias[i]->getType() == type)
-		return _materias[i]->clone();
+			return _materias[i]->clone();
 	}
+	std::cout << "Unknown Materia type: " << type << std::endl;
 	return NULL;
 }

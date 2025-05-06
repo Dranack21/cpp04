@@ -6,13 +6,17 @@ Ice::Ice()
 	this->_type = "ice";
 }
 
-Ice::Ice(const Ice &other)
+Ice::Ice(const Ice &other): AMateria(other)
 {
 	*this = other;
 }
 Ice &Ice::operator=(const Ice &copy)
 {
-	this->_type = copy._type;
+	if (this != &copy)
+    {
+        AMateria::operator=(copy);
+        this->_type = copy._type;
+    }
 	return (*this);
 }
 
@@ -39,7 +43,7 @@ Cure::Cure()
 	this->_type = "cure";
 }
 
-Cure::Cure(const Cure &other)
+Cure::Cure(const Cure &other): AMateria(other)
 {
 	*this = other;
 }

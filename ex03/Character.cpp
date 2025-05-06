@@ -61,12 +61,18 @@ Character::~Character()
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->Inventory[i] != NULL)
+		{
 			delete this->Inventory[i];
+			Inventory[i] = NULL;
+		}
 	}
 	for (int i = 0; i < 20; i++)
 	{
 		if (this->BackPack[i] != NULL)
+		{
 			delete this->BackPack[i];
+			BackPack[i] = NULL;
+		}
 	}
 }
 
@@ -80,6 +86,20 @@ void Character::equip(AMateria *m)
 	int i;
 
 	i = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->Inventory[i] == m)
+		{
+			std::cout << "Can't learn the same pointer twice would lead to double free errors "<< std::endl;
+			return;
+		}
+	}
+	std::cout << "e\n";
+	if (!m)
+	{
+		std::cout << "Can't learn a NULL POINTER probably cannot learn materia "<< std::endl;
+		return ;
+	}
 	while (i != 4)
 	{
 		if (this->Inventory[i] == NULL)
@@ -98,6 +118,7 @@ void Character::equip(AMateria *m)
 	if (i == 4)
 	{
 		std::cout << this->getName() << " cannot learn " << m->getType() << " because he has no inventory slots left " << std::endl;
+		delete m ;
 	}
 }
 
@@ -105,6 +126,11 @@ void Character::unequip(int idx)
 {
 	int i = 0;
 
+	if (idx < 0 || idx >= 4)
+	{
+		std::cout << "Please enter an index between 0 and 3 when trying to unequip a materia" << std::endl;
+		return ;
+	}
 	if (this->Inventory[idx] == NULL)
 	{
 		std::cout << this->getName() << " Has nothing equipped on slot "<< idx << std::endl;
@@ -112,7 +138,7 @@ void Character::unequip(int idx)
 	}
 	while(i != 20)
 	{
-		if (BackPack[i] != NULL)
+		if (BackPack[i] == NULL)
 			break;
 		i++;
 	}
@@ -131,9 +157,14 @@ void Character::use(int idx, ICharacter& target)
 {
 	if (idx < 0 || idx >= 4)
 	{
-		std::cout << "Please enter an index between 0 and 3" << std::endl;
+		std::cout << "Please enter an index between 0 and 3 when trying to use a materia" << std::endl;
 		return ;
 	}
-	std::cout << this->_nickname << " " ;
-	this->Inventory[idx]->use(target);
+	if (this->Inventory[idx])
+	{
+		std::cout << this->_nickname << " " ;
+		this->Inventory[idx]->use(target);
+	}
+	else if ((this->Inventory[idx]) == NULL)
+		std::cout << "You have no Materia equipped on this slot" << std::endl;
 }
