@@ -57,6 +57,7 @@ void MateriaSource::learnMateria(AMateria *materia)
 		}
 	}
 	std::cout << "Couldn't learn " << materia->getType() << ", because materia source is full." << std::endl;
+	delete materia;
 }
 AMateria *MateriaSource::createMateria(std::string const& type)
 {

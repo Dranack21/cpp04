@@ -30,10 +30,10 @@ int main()
     me->equip(tmp);
     tmp = src->createMateria("ice");
     me->equip(tmp);//equip fails///
-    me->equip(tmp);
     std::cout << "----------- [Unequip on Character ME] --------------" << std::endl;
     me->unequip(0);
     tmp = src->createMateria("cure");
+    me->equip(tmp);
 
 
     std::cout << "\n========== [ Set Character B ] ==========" << std::endl;
